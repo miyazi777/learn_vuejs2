@@ -67,9 +67,9 @@
 			    const data = Object.assign({}, this.input, {tags: this.tagsArr})
 			    this.$emit('add', data)
 		    },
-				cancel() {
-					this.$emit('cancel')
-				}
+		    cancel() {
+			    this.$emit('cancel')
+			}
 	    }
     }
 </script>
