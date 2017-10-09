@@ -1,7 +1,7 @@
 <template>
 	<div class="list-view">
         <div v-if="hasMemo">
-            <list-item v-for="memo in filteredMemos" :memo="memo" @remove="remove"></list-item>
+            <list-item v-for="memo in filteredMemos" :memo="memo" @remove="remove" @select="select"></list-item>
         </div>
         <div v-else>
             表示できるメモがありません。
@@ -14,9 +14,9 @@
 
     export default {
         props: {
-            memos: Array,		// 書き換え
-            count: Number,	// 追加
-            sort: String		// 追加
+            memos: Array,
+            count: Number,
+            sort: String
         },
         computed: {
           hasMemo() {

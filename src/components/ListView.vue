@@ -1,7 +1,7 @@
 <template>
 	<div class="list-view">
         <div v-if="hasMemo">
-            <list-item v-for="memo in filteredMemos" :memo="memo" @remove="remove"></list-item>
+            <list-item v-for="memo in filteredMemos" :memo="memo" @remove="remove" @select="select"></list-item>
         </div>
         <div v-else>
             表示できるメモがありません。
@@ -41,7 +41,10 @@
             remove(id) {
                 console.log('remove id:'+id)
                 this.$emit('remove', id)
-            }
+            },
+						select(id) {
+							this.$emit('select', id)
+						}
         },
         components: {
             'list-item': ListItem

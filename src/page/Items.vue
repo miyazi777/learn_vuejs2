@@ -1,6 +1,20 @@
+<style lang="scss">
+  .layout-items {
+    display: flex;
+    &-left {
+      flex-grow: 1;
+      overflow: scroll;
+    }
+    &-right {
+      border-left: 1px solid #bbb;
+    }
+  }
+</style>
+
 <template>
 	<div>
-		<list-view :memos="memos" @remove="remove"></list-view>
+		<list-view :memos="memos" @remove="remove" @select="select"></list-view>
+		<router-view class="layout-items-right" :memo="selectedMemo" @add="update" @cancel="cancel"></router-view>
 	</div>
 </template>
 
@@ -11,13 +25,34 @@
 		props: {
 			memos: Array
     },
+		computed: {
+			selectedMemo() {
+				if (this.$route.params.id !== undefined) {	// idがある時は/items/:idへアクセス
+					const id = parseInt(this.$route.params.id, 10)
+					const memo = this.memos.find((memo) => {
+						return memo.id === id
+					})
+					return memo
+				}
+			}
+		},
     methods: {
 			remove(id) {
 				this.$emit('remove', id)
-			}
+			},
+			select(id) {
+				this.$router.push({name: 'edit', params: {id}})
+			},
+            update(data) {
+                this.$emit('update', data)
+                this.$router.push({name: 'items'})
+            },
+            cancel() {
+                this.$router.push({name: 'items'})
+            }
     },
-		components: {
-			ListView
-		}
+	components: {
+		ListView
+	}
   }
 </script>

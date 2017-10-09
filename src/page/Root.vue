@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<list-view :memos="memos" @remove="remove" :count="count" :sort="sort"></list-view>
-    <router-link :to="{name: 'items'}">すべて見る</router-link>
+        <router-link :to="{name: 'items'}">すべて見る</router-link>
 	</div>
 </template>
 
