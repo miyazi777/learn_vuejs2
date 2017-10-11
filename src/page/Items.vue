@@ -20,14 +20,8 @@
 
 <script>
   import ListView from '../components/ListView'
-  import store from '../store'
 
   export default {
-    data() {
-      return {
-        sharedState: store.state
-      }
-    },
 		computed: {
 			selectedMemo() {
         const id = this.$route.params.id
@@ -37,25 +31,28 @@
           })
           return memo
         }
-			}
+			},
+      sharedState() {
+        return this.$store.state
+      }
 		},
     methods: {
 			remove(id) {
-        store.actions.removeMemo(id)
+        this.$store.commit('removeMemo', id)
 			},
       select(id) {
         this.$router.push({name: 'edit', params: {id}})
       },
       update(data) {
-        store.actions.updateMemo(data)
+        this.$store.commit('updateMemo', data)
         this.$router.push({name: 'items'})
       },
       cancel() {
         this.$router.push({name: 'items'})
       }
     },
-	components: {
-		ListView
-	}
+	  components: {
+		  ListView
+	  }
   }
 </script>

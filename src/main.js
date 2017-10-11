@@ -5,17 +5,23 @@ import App from './App'
 import VueRouter from 'vue-router'
 import routes from './routes'
 //import router from './router'
+// vuexとstoreをインポートする
+import Vuex from 'vuex'
+import _store from './store'
 
 Vue.use(VueRouter) // VueRoueterを使うことをVueに知らせる
+Vue.use(Vuex)			// Vuexのインストール
 const router = new VueRouter(routes)
+const store = new Vuex.Store(_store)
 
-Vue.config.productionTip = false
+//Vue.config.productionTip = false
 
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  router,
   template: '<App/>',
-  components: { App }
+  components: { App },
+  router,
+	store		// Vuex Storeをバインドする
 })
