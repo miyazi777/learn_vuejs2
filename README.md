@@ -1,5 +1,8 @@
 # vue-memo
 
+このRepositoryはcodegridの「これから始めるVue.js 2.0」を写経した、学習Repositoryとなります。
+https://app.codegrid.net/series/2016-vue
+
 > A Vue.js project
 
 ## Build Setup
